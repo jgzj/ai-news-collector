@@ -1,0 +1,87 @@
+{
+  "date": "2026-03-15",
+  "updated": "2026-03-15T12:00:00+08:00",
+  "count": 10,
+  "articles": [
+    {
+      "title": "OpenAI 发布新一代多模态模型，支持实时视频理解",
+      "link": "https://openai.com/blog/multimodal-model",
+      "source": "OpenAI Blog",
+      "published": "2026-03-15T09:00:00Z",
+      "summary": "OpenAI 今日发布最新多模态 AI 模型，能够实时理解和分析视频内容，在多个基准测试中超越现有模型",
+      "category": "产品"
+    },
+    {
+      "title": "DeepMind 新突破：AI 系统成功预测蛋白质三维结构",
+      "link": "https://deepmind.google/blog/protein-structure",
+      "source": "DeepMind Blog",
+      "published": "2026-03-15T08:30:00Z",
+      "summary": "DeepMind 研究团队在蛋白质折叠预测领域取得重大进展，新算法精度达到前所未有的水平",
+      "category": "研究"
+    },
+    {
+      "title": "Google AI 推出高效能推理框架，运行速度提升 10 倍",
+      "link": "https://blog.google/technology/ai/inference-framework",
+      "source": "Google AI Blog",
+      "published": "2026-03-15T07:45:00Z",
+      "summary": "Google 发布全新 AI 推理优化框架，通过创新的内存管理和计算调度，大幅提升模型运行效率",
+      "category": "产品"
+    },
+    {
+      "title": "MIT 研究：大语言模型展现出初步推理能力",
+      "link": "https://www.technologyreview.com/llm-reasoning",
+      "source": "MIT Technology Review",
+      "published": "2026-03-15T06:20:00Z",
+      "summary": "麻省理工学院最新研究表明，当前的大语言模型在特定条件下展现出类似人类的推理能力",
+      "category": "研究"
+    },
+    {
+      "title": "AI 初创公司融资创新高，季度融资额突破 500 亿美元",
+      "link": "https://techcrunch.com/ai-funding-record",
+      "source": "TechCrunch",
+      "published": "2026-03-15T05:15:00Z",
+      "summary": "2026 年第一季度 AI 领域投资持续火热，多家初创公司获得巨额融资，行业估值再创新高",
+      "category": "行业"
+    },
+    {
+      "title": "ArXiv 最新论文：Transformer 架构新变体提升长文本处理",
+      "link": "http://arxiv.org/abs/cs.AI/2026.0315",
+      "source": "ArXiv AI",
+      "published": "2026-03-15T04:00:00Z",
+      "summary": "研究者提出新型 Transformer 架构，通过改进注意力机制，显著提升长文本序列的处理效率",
+      "category": "研究"
+    },
+    {
+      "title": "The Verge 评测：五大 AI 助手横向对比",
+      "link": "https://www.theverge.com/ai-assistant-comparison",
+      "source": "The Verge - AI",
+      "published": "2026-03-15T03:30:00Z",
+      "summary": "我们对当前主流的五大 AI 助手进行全面评测，从准确性、响应速度、功能丰富度等多个维度进行对比",
+      "category": "产品"
+    },
+    {
+      "title": "Towards Data Science：详解强化学习最新进展",
+      "link": "https://towardsdatascience.com/reinforcement-learning-2026",
+      "source": "Towards Data Science",
+      "published": "2026-03-15T02:45:00Z",
+      "summary": "本文深入解析 2026 年强化学习领域的关键技术突破，包括新的算法优化和应用场景拓展",
+      "category": "研究"
+    },
+    {
+      "title": "VentureBeat：企业 AI 采用率已达 78%",
+      "link": "https://venturebeat.com/enterprise-ai-adoption",
+      "source": "VentureBeat AI",
+      "published": "2026-03-15T01:20:00Z",
+      "summary": "最新调查显示，全球大型企业中有 78% 已经部署或正在测试 AI 解决方案，adoption 率远超预期",
+      "category": "行业"
+    },
+    {
+      "title": "AI News：计算机视觉在医疗诊断中的应用突破",
+      "link": "https://artificialintelligence-news.com/medical-cv",
+      "source": "AI News",
+      "published": "2026-03-15T00:30:00Z",
+      "summary": "医疗 AI 领域迎来重要进展，新的计算机视觉系统在多种疾病早期诊断中表现优异",
+      "category": "行业"
+    }
+  ]
+}
