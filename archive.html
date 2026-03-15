@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI 新闻历史归档">
+    <title>历史归档 - AI 新闻日报</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <style>
+        :root{--bg-primary:#0a0a1a;--bg-secondary:#0f0f2a;--bg-card:#16163a;--bg-card-hover:#1a1a4a;--accent:#6366f1;--accent-light:#818cf8;--text-primary:#f8fafc;--text-secondary:#94a3b8;--text-muted:#64748b;--border:#1e293b;--border-light:#334155;--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg-primary);min-height:100vh;color:var(--text-primary);line-height:1.6}
+        .container{max-width:800px;margin:0 auto;padding:0 20px}
+        header{background:rgba(10,10,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+        .header-content{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+        .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text-primary)}
+        .logo-icon{font-size:2rem}
+        .logo-text h1{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--text-primary),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .back-btn{background:var(--bg-card);border:1px solid var(--border-light);color:var(--text-primary);padding:10px 18px;border-radius:10px;cursor:pointer;font-size:0.85rem;text-decoration:none;transition:var(--transition);display:flex;align-items:center;gap:8px}
+        .back-btn:hover{background:var(--bg-card-hover);border-color:var(--accent)}
+        main{padding:40px 0}
+        h2{font-size:1.3rem;font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+        .archive-list{display:grid;gap:12px}
+        .archive-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;transition:var(--transition);text-decoration:none;color:var(--text-primary);display:flex;justify-content:space-between;align-items:center}
+        .archive-item:hover{background:var(--bg-card-hover);border-color:var(--accent);transform:translateX(4px)}
+        .archive-date{font-weight:600;font-size:1rem}
+        .archive-count{color:var(--text-muted);font-size:0.85rem;background:var(--bg-secondary);padding:4px 12px;border-radius:20px}
+        .loading{text-align:center;padding:60px 20px;color:var(--text-muted)}
+        .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;margin:0 auto 20px;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        footer{background:var(--bg-secondary);border-top:1px solid var(--border);padding:24px 0;margin-top:40px;text-align:center;color:var(--text-muted);font-size:0.85rem}
+        footer a{color:var(--accent-light);text-decoration:none}
+        @media(max-width:768px){.container{padding:0 16px}.archive-item{padding:16px 18px}.archive-date{font-size:0.95rem}}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <span class="logo-icon">🤖</span>
+                    <div class="logo-text"><h1>AI 新闻日报</h1></div>
+                </a>
+                <a href="/" class="back-btn">← 返回首页</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <h2>📁 历史归档</h2>
+        <div class="archive-list" id="archiveList">
+            <div class="loading"><div class="spinner"></div><p>正在加载归档列表...</p></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p><a href="https://github.com/jgzj/ai-news-collector">GitHub 项目</a> · 自动归档</p>
+        </div>
+    </footer>
+    <script>
+        async function loadArchive(){const a=document.getElementById("archiveList");try{const r=await fetch("data/archive/index.json?v="+Date.now());if(!r.ok)throw new Error("HTTP "+r.status);const d=await r.json();if(!d.months||d.months.length===0){a.innerHTML='<p class="loading" style="color:var(--text-muted)">暂无归档数据</p>';return}a.innerHTML=d.months.map(m=>'<a href="archive/'+m.file+'" class="archive-item"><span class="archive-date">'+m.label+'</span><span class="archive-count">'+m.days+' 天</span></a>').join("")}catch(e){console.error("加载失败:",e);a.innerHTML='<p class="loading" style="color:var(--text-muted)">加载归档列表失败</p>'}}
+        loadArchive();
+    </script>
+</body>
+</html>
