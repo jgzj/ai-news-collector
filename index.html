@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 AI 新闻日报 - 每日人工智能资讯</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="每日自动更新的人工智能领域最新资讯">
+    <meta name="keywords" content="AI,人工智能，新闻，科技，机器学习，深度学习">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>AI 新闻日报</h1>
+            </div>
+            <p class="subtitle">每日自动更新 · 精选人工智能资讯</p>
+            <div class="update-info">
+                <span class="date-badge" id="currentDate"></span>
+                <span class="count-badge" id="newsCount">0 条新闻</span>
+            </div>
+        </header>
+        <main class="news-container">
+            <div class="news-header">
+                <h2>📰 今日要闻</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="research">研究</button>
+                    <button class="filter-btn" data-filter="product">产品</button>
+                    <button class="filter-btn" data-filter="industry">行业</button>
+                </div>
+            </div>
+            <div class="news-list" id="newsList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>正在加载最新新闻...</p>
+                </div>
+            </div>
+        </main>
+        <section class="sources-section">
+            <h3>📚 新闻来源</h3>
+            <div class="sources-grid">
+                <div class="source-item">The Verge - AI</div>
+                <div class="source-item">TechCrunch</div>
+                <div class="source-item">MIT Technology Review</div>
+                <div class="source-item">ArXiv</div>
+                <div class="source-item">AI News</div>
+                <div class="source-item">VentureBeat</div>
+                <div class="source-item">Towards Data Science</div>
+                <div class="source-item">OpenAI Blog</div>
+                <div class="source-item">Google AI</div>
+                <div class="source-item">DeepMind</div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>
+                <a href="https://github.com/jgzj/ai-news-collector" target="_blank">🐙 GitHub 项目</a>
+                <span class="separator">•</span>
+                <span>自动更新 · 每日精选</span>
+            </p>
+            <p class="last-updated">最后更新：<span id="lastUpdate">加载中...</span></p>
+        </footer>
+    </div>
+    <script>
+        const today = new Date();
+        document.getElementById('currentDate').textContent = today.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+        async function loadNews() {
+            try {
+                const response = await fetch('data/latest.json');
+                const data = await response.json();
+                document.getElementById('newsCount').textContent = data.count + '条新闻';
+                document.getElementById('lastUpdate').textContent = new Date(data.updated).toLocaleString('zh-CN');
+                renderNews(data.articles);
+            } catch (error) {
+                document.getElementById('newsList').innerHTML = '<div class="error-message"><p>⚠️ 新闻加载失败</p><p>请稍后刷新页面重试</p></div>';
+            }
+        }
+        function renderNews(articles) {
+            const newsList = document.getElementById('newsList');
+            if (!articles || articles.length === 0) { newsList.innerHTML = '<p class="no-news">暂无新闻数据</p>'; return; }
+            newsList.innerHTML = articles.map((article, index) => '<article class="news-card" style="animation-delay: ' + (index * 0.1) + 's"><div class="news-card-header"><span class="news-source">' + article.source + '</span><span class="news-time">' + formatTime(article.published) + '</span></div><h3 class="news-title"><a href="' + article.link + '" target="_blank" rel="noopener">' + article.title + '</a></h3>' + (article.summary ? '<p class="news-summary">' + article.summary + '...</p>' : '') + '<div class="news-card-footer"><span class="news-category">' + (article.category || 'AI') + '</span><a href="' + article.link + '" target="_blank" rel="noopener" class="read-more">阅读全文 →</a></div></article>').join('');
+        }
+        function formatTime(dateString) {
+            try {
+                const date = new Date(dateString);
+                const now = new Date();
+                const diff = now - date;
+                if (diff < 3600000) return Math.floor(diff / 60000) + '分钟前';
+                else if (diff < 86400000) return Math.floor(diff / 3600000) + '小时前';
+                else return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+            } catch { return '近期'; }
+        }
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', loadNews);
+    </script>
+</body>
+</html>
