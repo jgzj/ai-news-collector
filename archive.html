@@ -38,11 +38,11 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="/" class="logo">
+                <a href="./" class="logo">
                     <span class="logo-icon">🤖</span>
                     <div class="logo-text"><h1>AI 新闻日报</h1></div>
                 </a>
-                <a href="/" class="back-btn">← 返回首页</a>
+                <a href="./" class="back-btn">← 返回首页</a>
             </div>
         </div>
     </header>
@@ -58,7 +58,7 @@
         </div>
     </footer>
     <script>
-        async function loadArchive(){const a=document.getElementById("archiveList");try{const r=await fetch("data/archive/index.json?v="+Date.now());if(!r.ok)throw new Error("HTTP "+r.status);const d=await r.json();if(!d.months||d.months.length===0){a.innerHTML='<p class="loading" style="color:var(--text-muted)">暂无归档数据</p>';return}a.innerHTML=d.months.map(m=>'<a href="archive/'+m.file+'" class="archive-item"><span class="archive-date">'+m.label+'</span><span class="archive-count">'+m.days+' 天</span></a>').join("")}catch(e){console.error("加载失败:",e);a.innerHTML='<p class="loading" style="color:var(--text-muted)">加载归档列表失败</p>'}}
+        async function loadArchive(){const a=document.getElementById("archiveList");try{const r=await fetch("data/archive/index.json?v="+Date.now());if(!r.ok)throw new Error("HTTP "+r.status);const d=await r.json();if(!d.months||d.months.length===0){a.innerHTML='<p class="loading" style="color:var(--text-muted)">暂无归档数据</p>';return}a.innerHTML=d.months.map(m=>'<a href="archive/"+m.file+"" class="archive-item"><span class="archive-date">'+m.label+'</span><span class="archive-count">'+m.days+' 天</span></a>').join("")}catch(e){console.error("加载失败:",e);a.innerHTML='<p class="loading" style="color:var(--text-muted)">加载归档列表失败</p>'}}
         loadArchive();
     </script>
 </body>
